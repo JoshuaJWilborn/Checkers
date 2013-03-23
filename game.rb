@@ -2,10 +2,9 @@
 # encoding: utf-8
 
 require 'colorize'
-require 'debugger'
-require 'board.rb'
-require 'player.rb'
-require 'piece.rb'
+require './board.rb'
+require './player.rb'
+require './piece.rb'
 
 
 class Game

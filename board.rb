@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Board
   PIECES_TO_COLOR = {:w => :light_white, :b => :light_black}
   BACKGROUND_COLOR = [:black, :white]
@@ -37,10 +40,13 @@ class Board
   
   def display
     color_index = 0
-    puts (' ' * 20) + '||' + ('=' * 30) + '||'
+    legend = (' ' * 23)
+    10.times {|num| legend << (" #{num} ") }
+    legend
+    puts legend
     @board.each_with_index do |row, row_num|
-      print ' ' * 20
-      row_display = '||'
+      print ' ' * 21
+      row_display = row_num.to_s + ' '
       row.each_with_index do |space, col_num|
         space_display = ''
         if space.nil?
@@ -56,11 +62,11 @@ class Board
         row_display << space_display.colorize({:color => PIECES_TO_COLOR[color], :background => BACKGROUND_COLOR[color_index]})
         color_index = color_index == 0 ? 1 : 0 
       end
-      row_display << "||"
+      row_display << ' ' + row_num.to_s
       print "#{row_display}\n"
       color_index = color_index == 0 ? 1 : 0 
     end
-    puts (' ' * 20) + '||' + ('=' * 30) + '||'
+    puts legend
   end
   
   def on_board?(start, finish = [0,0])
